@@ -25,7 +25,7 @@ public class ImageManager {
 		// Image img =
 		// Toolkit.getDefaultToolkit().createImage(WindowManager.baseURL +
 		// "/media/img/1383571573.78.png");
-
+		
 		// Image img = null;
 		// try {
 		// img = ImageIO.read(new URL(WindowManager.baseURL +
