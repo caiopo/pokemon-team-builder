@@ -45,9 +45,8 @@ public class Window {
 		frame.setSize(new Dimension(1000, 600));
 		frame.setLocationRelativeTo(null);
 
-		
 		WindowManager ww = new WindowManager();
-		
+
 		System.out.println("oi");
 		JLabel lblNewLabel = new JLabel(ww.img);
 
