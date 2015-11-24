@@ -1,10 +1,8 @@
 package util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import com.pokejava.Pokedex;
 import com.pokejava.Pokemon;
 
 public class PokeUtils {
@@ -33,24 +31,4 @@ public class PokeUtils {
 		return listInt;
 	}
 
-	public static List<String> generatePokedex() {
-
-		Pokedex p = new Pokedex();
-
-		System.out.println(p.getPokemonsNames());
-
-		System.out.println(p.getPokemonsNames().size());
-
-		List<String> pokes = Arrays
-				.asList(((String[]) p.getPokemonsNames().toArray(new String[p.getPokemonsNames().size()])));
-
-		for (int i = 0; i < pokes.size(); i++) {
-
-			System.out.println(pokes.get(i) + " " + i);
-
-		}
-
-		return pokes;
-
-	}
 }

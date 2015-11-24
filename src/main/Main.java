@@ -1,63 +1,61 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
 
-import javax.swing.Icon;
-import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import com.pokejava.Pokedex;
 import com.pokejava.Pokemon;
-import com.pokejava.Sprite;
 
+import objects.Team;
 import util.PokeUtils;
 import window.ImageManager;
 
 public class Main {
 
-	// public static void main(String[] args) {
-	//
-	// }
-
-	// /**
-	// * search poke
-	// *
-	// * @param args
-	// */
-	//
 	public static void main(String[] args) {
 
-		List<String> pokes = PokeUtils.generatePokedex();
+		Random rng = new Random(System.currentTimeMillis());
 
-		String name = JOptionPane.showInputDialog("");
+		Team team = new Team();
 
-		List<Integer> indices = PokeUtils.indexContains(pokes, name);
+		for (int i = 0; i < Team.MAX_SIZE; i++) {
 
-		List<Pokemon> filteredPokes = new ArrayList<>();
-
-		for (int pokeIndex : indices) {
-			System.out.println(pokeIndex);
-		}
-
-		for (int pokeIndex : indices) {
-			filteredPokes.add(new Pokemon(pokeIndex + 1));
-		}
-
-		for (Pokemon pokemon : filteredPokes) {
-			System.out.println(pokemon.toString());
-			System.out.println(pokemon.getID());
+			team.add(new Pokemon(rng.nextInt(PokeUtils.MAX_POKEDEX)));
 
 		}
 
-		for (Pokemon pokemon : filteredPokes) {
+		JPanel jpanel = new JPanel();
 
-			Icon icon = ImageManager.loadPokeImage(pokemon);
+		for (int i = 0; i < Team.MAX_SIZE; i++) {
 
-			JOptionPane.showMessageDialog(null, icon);
+			final Pokemon p = team.get(i);
+
+			ImageIcon icon = ImageManager.loadPokeImage(team.get(i));
+
+			System.out.println(icon.getIconWidth() + ", " + icon.getIconHeight());
+
+			JButton jb = new JButton(icon);
+
+			jb.setSize(new Dimension(120, 120));
+
+			jb.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JOptionPane.showMessageDialog(null, p.toString());
+				}
+			});
+
+			jpanel.add(jb);
 		}
+
+		JOptionPane.showMessageDialog(null, jpanel);
 
 	}
 }

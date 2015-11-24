@@ -1,8 +1,11 @@
 package window;
 
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import com.pokejava.Pokemon;
@@ -28,9 +31,36 @@ public class ImageManager {
 
 		System.out.println(url);
 
-		Image temp = Toolkit.getDefaultToolkit().createImage(url);
+		BufferedImage temp = null;
+
+		try {
+			temp = ImageIO.read(new URL(url));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		return new ImageIcon(temp);
+	}
+
+	public static BufferedImage loadImageFromURL2(String url) {
+
+		System.out.println(url);
+
+		BufferedImage temp = null;
+
+		try {
+			temp = ImageIO.read(new URL(url));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// Image temp = Toolkit.getDefaultToolkit().createImage(url);
+
+		return temp;
 	}
 
 }
