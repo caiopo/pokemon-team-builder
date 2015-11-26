@@ -29,7 +29,7 @@ public class ImageManager {
 
 	public static ImageIcon loadImageFromURL(String url) {
 
-		System.out.println(url);
+//		System.out.println(url);
 
 		BufferedImage temp = null;
 

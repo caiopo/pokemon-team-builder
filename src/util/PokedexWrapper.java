@@ -21,7 +21,7 @@ public class PokedexWrapper {
 		List<String> filtered = new ArrayList<>();
 
 		for (String n : names)
-			if (n.contains(name))
+			if (n != null && n.contains(name))
 				filtered.add(n);
 		return filtered.toArray(new String[filtered.size()]);
 	}
