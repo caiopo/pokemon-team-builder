@@ -16,19 +16,20 @@ import util.PokedexWrapper;
 
 public class PokemonSearch {
 
+	public static String TITLE = "Search Pokemon";
+
 	public static Pokemon open(PokedexWrapper pokedex) {
-		Pokemon[] input = input(pokedex);
 
-		for (Pokemon poke : input) {
-			System.out.println(poke);
-		}
+		PokemonSearch search = new PokemonSearch();
 
-		System.out.println("FINISHED");
+		Pokemon[] input = search.input(pokedex);
 
-		return makeResultWindow(input);
+		return search.makeResultWindow(input);
 	}
 
-	public static Pokemon[] input(PokedexWrapper pokedex) {
+	private WaitingDialog dialog;
+
+	public Pokemon[] input(PokedexWrapper pokedex) {
 
 		JPanel panel = new JPanel();
 
@@ -37,11 +38,13 @@ public class PokemonSearch {
 		JTextField jtf = new JTextField(20);
 		panel.add(jtf);
 
-		JOptionPane.showMessageDialog(null, panel, "Search Pokemon", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null, panel, TITLE, JOptionPane.PLAIN_MESSAGE);
 
 		String input = jtf.getText();
 
 		// TODO Waiting window
+
+		// dialog = new WaitingDialog("Searching...", TITLE);
 
 		Pokemon[] searchResult = pokedex.searchPokemon(input);
 
@@ -49,13 +52,15 @@ public class PokemonSearch {
 
 	}
 
-	public static Pokemon makeResultWindow(Pokemon[] pokemons) {
+	public Pokemon makeResultWindow(Pokemon[] pokemons) {
 
 		Pokemon chosen;
 
 		JPanel panel = new JPanel(new GridLayout(0, Math.min(5, pokemons.length)));
 		ButtonGroup bg = new ButtonGroup();
 		ArrayList<JRadioButton> jrbs = new ArrayList<>(pokemons.length);
+
+		// dialog.setMessage("Fetching images...");
 
 		for (Pokemon pokemon : pokemons) {
 
@@ -72,6 +77,8 @@ public class PokemonSearch {
 			// jb.addActionListener();
 
 		}
+
+		// dialog.dispose();
 
 		JOptionPane.showMessageDialog(null, panel, "Select the desired Pokemon", JOptionPane.PLAIN_MESSAGE);
 
