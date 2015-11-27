@@ -79,7 +79,7 @@ class PokemonSearchWindow {
 
 		for (Pokemon pokemon : pokemons) {
 
-			JRadioButton jrb = new JRadioButton(pokemon.getName(), ImageManager.loadPokeImage(pokemon));
+			JRadioButton jrb = new JRadioButton(pokemon.getName(), pokemon.getIcon());
 
 			bg.add(jrb);
 

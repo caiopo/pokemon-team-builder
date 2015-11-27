@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,7 +13,6 @@ import com.pokejava.Pokemon;
 
 import objects.Team;
 import util.PokeUtils;
-import window.ImageManager;
 
 public class Main2 {
 
@@ -38,21 +36,20 @@ public class Main2 {
 
 		for (int i = 0; i < Team.MAX_SIZE; i++) {
 
-			final Pokemon p = team.get(i);
+			// System.out.println(team.get(i).getIcon().getIconWidth() + ", " +
+			// team.get(i).getIcon().getIconHeight());
 
-			ImageIcon icon = ImageManager.loadPokeImage(team.get(i));
-
-			System.out.println(icon.getIconWidth() + ", " + icon.getIconHeight());
-
-			JButton jb = new JButton(icon);
+			JButton jb = new JButton(team.get(i).getIcon());
 
 			jb.setSize(new Dimension(120, 120));
+
+			final String str = team.get(i).toString();
 
 			jb.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, p.toString());
+					JOptionPane.showMessageDialog(null, str);
 				}
 			});
 

@@ -3,9 +3,15 @@ package window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+
 import com.pokejava.Pokemon;
 
-public class PokeButton {
+public class PokeButton extends JButton {
+
+	public PokeButton(Pokemon pokemon) {
+		super(pokemon.getName(), pokemon.getIcon());
+	}
 
 }
 
