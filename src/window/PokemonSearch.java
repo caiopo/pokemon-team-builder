@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import com.pokejava.Pokemon;
 
 import exceptions.IllegalInputException;
-import exceptions.PokemonNotFoundException;
 import util.PokedexWrapper;
 
 public class PokemonSearch {
@@ -55,21 +54,28 @@ class PokemonSearchWindow {
 
 		// TODO Waiting window
 
-		// dialog = new WaitingDialog("Searching...", TITLE);
+		wDialog = new WaitingDialog("Searching...", TITLE);
 
+		System.out.println("Started search");
 		Pokemon[] searchResult = pokedex.searchPokemon(input);
+		System.out.println("Finished search");
 
 		return searchResult;
 
 	}
 
 	public Pokemon makeResultWindow(Pokemon[] pokemons) {
+		System.out.println("Started the result window");
 
 		JPanel panel = new JPanel(new GridLayout(0, Math.min(5, pokemons.length)));
 		ButtonGroup bg = new ButtonGroup();
 		ArrayList<JRadioButton> jrbs = new ArrayList<>(pokemons.length);
 
-		// dialog.setMessage("Fetching images...");
+		System.out.println("Changing dialog message");
+
+		wDialog.setMessage("Fetching images...");
+
+		System.out.println("Changed dialog message");
 
 		for (Pokemon pokemon : pokemons) {
 
@@ -87,18 +93,24 @@ class PokemonSearchWindow {
 
 		}
 
-		// dialog.dispose();
+		wDialog.dispose();
 
-		JOptionPane.showMessageDialog(null, panel, "Select the desired Pokemon", JOptionPane.PLAIN_MESSAGE);
+		Pokemon pokemon = null;
 
-		for (JRadioButton jrb : jrbs)
-			if (jrb.isSelected())
-				for (Pokemon poke : pokemons)
-					if (poke.getName().equalsIgnoreCase(jrb.getText()))
-						return poke;
+		do {
 
-		throw new PokemonNotFoundException();
+			JOptionPane.showMessageDialog(null, panel, "Select the desired Pokemon", JOptionPane.PLAIN_MESSAGE);
 
-		// throw new IllegalArgumentException();
+			for (JRadioButton jrb : jrbs)
+				if (jrb.isSelected())
+					for (Pokemon poke : pokemons)
+						if (poke.getName().equalsIgnoreCase(jrb.getText()))
+							pokemon = poke;
+
+		} while (pokemon == null);
+
+		assert (pokemon != null);
+
+		return pokemon;
 	}
 }

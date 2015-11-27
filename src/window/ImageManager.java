@@ -29,7 +29,7 @@ public class ImageManager {
 
 	public static ImageIcon loadImageFromURL(String url) {
 
-//		System.out.println(url);
+		// System.out.println(url);
 
 		BufferedImage temp = null;
 
@@ -44,23 +44,23 @@ public class ImageManager {
 		return new ImageIcon(temp);
 	}
 
-	public static BufferedImage loadImageFromURL2(String url) {
-
-		System.out.println(url);
-
-		BufferedImage temp = null;
-
-		try {
-			temp = ImageIO.read(new URL(url));
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		// Image temp = Toolkit.getDefaultToolkit().createImage(url);
-
-		return temp;
-	}
+	// public static BufferedImage loadImageFromURL2(String url) {
+	//
+	// System.out.println(url);
+	//
+	// BufferedImage temp = null;
+	//
+	// try {
+	// temp = ImageIO.read(new URL(url));
+	// } catch (MalformedURLException e) {
+	// e.printStackTrace();
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	//
+	// // Image temp = Toolkit.getDefaultToolkit().createImage(url);
+	//
+	// return temp;
+	// }
 
 }
