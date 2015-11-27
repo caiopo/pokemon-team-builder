@@ -28,6 +28,7 @@ public class PokedexWrapper {
 			if (names.get(i).contains(name))
 				filtered.add(names.get(i));
 
+
 		return filtered.toArray(new String[filtered.size()]);
 	}
 

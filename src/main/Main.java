@@ -11,7 +11,7 @@ import window.PokemonSearch;
 public class Main {
 
 	public static void main(String[] args) {
-		PokedexWrapper p = new PokedexWrapper();
+		PokedexWrapper p = (PokedexWrapper) new PokedexWrapper();
 
 		// for (Pokemon pkmn : p.searchPokemon("pika")) {
 		// testImage(pkmn);
@@ -24,8 +24,10 @@ public class Main {
 		// System.out.println(pokemon.toString());
 		// }
 		//
-		
+
 		System.out.println(search);
+
+		testImage(search);
 
 	}
 

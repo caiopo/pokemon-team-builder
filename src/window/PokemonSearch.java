@@ -11,23 +11,29 @@ import javax.swing.JTextField;
 
 import com.pokejava.Pokemon;
 
+import exceptions.IllegalInputException;
 import exceptions.PokemonNotFoundException;
 import util.PokedexWrapper;
 
 public class PokemonSearch {
 
-	public static String TITLE = "Search Pokemon";
-
 	public static Pokemon open(PokedexWrapper pokedex) {
 
-		PokemonSearch search = new PokemonSearch();
+		PokemonSearchWindow search = new PokemonSearchWindow();
 
 		Pokemon[] input = search.input(pokedex);
 
 		return search.makeResultWindow(input);
 	}
 
-	private WaitingDialog dialog;
+	// -------------------------
+}
+
+class PokemonSearchWindow {
+
+	public static String TITLE = "Search Pokemon";
+
+	private WaitingDialog wDialog;
 
 	public Pokemon[] input(PokedexWrapper pokedex) {
 
@@ -42,6 +48,11 @@ public class PokemonSearch {
 
 		String input = jtf.getText();
 
+		if (input.isEmpty())
+			throw new IllegalInputException();
+
+		System.out.println("Creating window");
+
 		// TODO Waiting window
 
 		// dialog = new WaitingDialog("Searching...", TITLE);
@@ -53,8 +64,6 @@ public class PokemonSearch {
 	}
 
 	public Pokemon makeResultWindow(Pokemon[] pokemons) {
-
-		Pokemon chosen;
 
 		JPanel panel = new JPanel(new GridLayout(0, Math.min(5, pokemons.length)));
 		ButtonGroup bg = new ButtonGroup();
