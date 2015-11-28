@@ -25,7 +25,6 @@ public class PokemonSearch {
 		return search.makeResultWindow(input);
 	}
 
-	// -------------------------
 }
 
 class PokemonSearchWindow {
@@ -37,8 +36,6 @@ class PokemonSearchWindow {
 	public Pokemon[] input(PokedexWrapper pokedex) {
 
 		JPanel panel = new JPanel();
-
-		// panel.setb
 
 		JTextField jtf = new JTextField(20);
 		panel.add(jtf);
@@ -52,9 +49,7 @@ class PokemonSearchWindow {
 
 		System.out.println("Creating window");
 
-		// TODO Waiting window
-
-		wDialog = new WaitingDialog("Searching...", TITLE);
+		wDialog = new WaitingDialog("Searching...", "Wait");
 
 		System.out.println("Started search");
 		Pokemon[] searchResult = pokedex.searchPokemon(input);
@@ -71,12 +66,6 @@ class PokemonSearchWindow {
 		ButtonGroup bg = new ButtonGroup();
 		ArrayList<JRadioButton> jrbs = new ArrayList<>(pokemons.length);
 
-		System.out.println("Changing dialog message");
-
-		wDialog.setMessage("Fetching images...");
-
-		System.out.println("Changed dialog message");
-
 		for (Pokemon pokemon : pokemons) {
 
 			JRadioButton jrb = new JRadioButton(pokemon.getName(), pokemon.getIcon());
@@ -86,10 +75,6 @@ class PokemonSearchWindow {
 			panel.add(jrb);
 
 			jrbs.add(jrb);
-			// JButton jb = new JButton(pokemon.getName(),
-			// ImageManager.loadPokeImage(pokemon));
-			//
-			// jb.addActionListener();
 
 		}
 

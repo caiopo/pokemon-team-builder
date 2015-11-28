@@ -27,12 +27,6 @@ public class PokemonInfoWindow {
 		this.pokemon = pokemon;
 		ArrayList<Ability> abilities = pokemon.getAbilities();
 
-		// GridLayout grid = new GridLayout(0, 1);
-		//
-		// grid.setVgap(-100);
-		//
-		// System.out.println(grid.getVgap() + " " + grid.getHgap());
-
 		JPanel panel = new JPanel();
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -45,9 +39,6 @@ public class PokemonInfoWindow {
 		panel.add(new JLabel("ID: " + pokemon.getID()));
 
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
-
-		// panel.add(new JLabel("Description: " +
-		// chooseDescription(pokemon).getDescription()));
 
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
@@ -65,15 +56,6 @@ public class PokemonInfoWindow {
 		panel.add(new JLabel("Defense: " + pokemon.getDefense()));
 		panel.add(new JLabel("Special Defense: " + pokemon.getSpDefense()));
 		panel.add(new JLabel("Speed: " + pokemon.getSpeed()));
-
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
-
-		// if (pokemon.getEvolvesAt() == -2)
-		// panel.add(new JLabel("Evolution: Special"));
-		// else if (pokemon.getEvolvesAt() == -1)
-		// panel.add(new JLabel("Evolution: None"));
-		// else
-		// panel.add(new JLabel("Evolves at: " + pokemon.getEvolvesAt()));
 
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 

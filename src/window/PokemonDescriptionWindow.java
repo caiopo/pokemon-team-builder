@@ -11,17 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import com.pokejava.Description;
 import com.pokejava.Pokemon;
 
 public class PokemonDescriptionWindow {
 
-	private ArrayList<Integer> descIDs;
+	private ArrayList<Description> descriptions;
 	private int index = 0;
-	private Description desc;
-	// private ArrayList<Description> descs;
 	private Pokemon pokemon;
 	private JPanel panel;
 	private JLabel label;
@@ -31,28 +28,40 @@ public class PokemonDescriptionWindow {
 	public PokemonDescriptionWindow(Pokemon pokemon) {
 		this.pokemon = pokemon;
 
-		descIDs = pokemon.getDescriptionsID();
+		descriptions = pokemon.getDescriptions();
 
-		desc = new Description(descIDs.get(0));
+		createWindow();
 
+	}
+
+	private void next() {
+
+		label.setText(descriptions.get(index).getDescription());
+
+		frame.setTitle(pokemon.getName() + " #" + (index + 1));
+
+		index = (index + 1) % descriptions.size();
+
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+
+	}
+
+	private void dispose() {
+		frame.dispose();
+	}
+
+	private void createWindow() {
 		panel = new JPanel();
 
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		// panel.add(new JLabel(pokemon.getIcon()), Container.CENTER_ALIGNMENT);
-
-		label = new JLabel(desc.getDescription());
-		label.setIcon(pokemon.Icon);
+		label = new JLabel();
+		label.setIcon(pokemon.getIcon());
 		label.setAlignmentX(Container.CENTER_ALIGNMENT);
 		panel.add(label);
-
-		// JTextArea multi = new JTextArea(desc.getDescription());
-		// multi.setWrapStyleWord(true);
-		// multi.setLineWrap(true);
-		// multi.setEditable(false);
-		// panel.add(multi);
 
 		next = new JButton("Next");
 		next.addActionListener(new ActionListener() {
@@ -83,22 +92,7 @@ public class PokemonDescriptionWindow {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
-
+		next();
 	}
 
-	private void next() {
-
-		index = (index + 1) % descIDs.size();
-
-		desc = new Description(descIDs.get(index));
-
-		label.setText(desc.getDescription());
-
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-	}
-
-	private void dispose() {
-		frame.dispose();
-	}
 }
