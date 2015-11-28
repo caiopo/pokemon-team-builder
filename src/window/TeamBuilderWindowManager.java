@@ -14,17 +14,18 @@ public class TeamBuilderWindowManager {
 	public TeamBuilderWindowManager(Team team, PokedexWrapper pokedex) {
 		this.pokedex = pokedex;
 
-		if (team != null)
-			this.team = team;
-		else
-			this.team = new Team();
-
 		tbw = new TeamBuilderWindow();
 
 		for (int i = 0; i < Team.MAX_SIZE; i++) {
 
 			tbw.addListener(i, new TeamBuilderListener(i));
 		}
+
+		if (team != null) {
+			this.team = team;
+			tbw.update(team);
+		} else
+			this.team = new Team();
 
 	}
 

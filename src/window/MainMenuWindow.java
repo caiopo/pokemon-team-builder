@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import io.Importer;
+import objects.Team;
 import util.PokedexWrapper;
 
 public class MainMenuWindow {
@@ -74,7 +75,16 @@ public class MainMenuWindow {
 	}
 
 	private void importTeam() {
-		new TeamBuilderWindowManager(Importer.importar(), pokedex);
+
+		frame.setVisible(false);
+
+		Team t = Importer.importar();
+
+		if (t != null) {
+			new TeamBuilderWindowManager(t, pokedex);
+		} else {
+			frame.setVisible(true);
+		}
 	}
 
 	private void viewPokedex() {
