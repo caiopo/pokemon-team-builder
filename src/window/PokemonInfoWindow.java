@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -15,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.pokejava.Ability;
-import com.pokejava.Description;
 import com.pokejava.Pokemon;
 
 public class PokemonInfoWindow {

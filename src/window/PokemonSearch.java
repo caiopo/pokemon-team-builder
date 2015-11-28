@@ -11,7 +11,6 @@ import javax.swing.JTextField;
 
 import com.pokejava.Pokemon;
 
-import exceptions.IllegalInputException;
 import util.PokedexWrapper;
 
 public class PokemonSearch {
@@ -45,7 +44,7 @@ class PokemonSearchWindow {
 		String input = jtf.getText();
 
 		if (input.isEmpty())
-			throw new IllegalInputException();
+			return null;
 
 		System.out.println("Creating window");
 
@@ -61,6 +60,9 @@ class PokemonSearchWindow {
 
 	public Pokemon makeResultWindow(Pokemon[] pokemons) {
 		System.out.println("Started the result window");
+
+		if (pokemons == null)
+			return null;
 
 		JPanel panel = new JPanel(new GridLayout(0, Math.min(5, pokemons.length)));
 		ButtonGroup bg = new ButtonGroup();

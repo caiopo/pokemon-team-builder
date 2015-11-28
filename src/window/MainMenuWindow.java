@@ -1,116 +1,86 @@
 package window;
 
-import java.awt.EventQueue;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.factories.FormFactory;
-
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
-
-import java.awt.Component;
-
-import javax.swing.SwingConstants;
-import javax.swing.JLabel;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import util.PokedexWrapper;
 
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class MainMenuWindow {
 
-	private JFrame frame;
+	private static final String TITLE = "Pokemon";
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainMenuWindow window = new MainMenuWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+	private JFrame frame;
+	private JPanel panel;
+	private JButton newTeam, importTeam, viewPokedex;
+	private PokedexWrapper pokedex;
+
+	public MainMenuWindow(PokedexWrapper pokedex) {
+		this.pokedex = pokedex;
+
+		panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+		newTeam = new JButton("Create a new Pokemon team");
+		newTeam.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				createNewTeam();
 			}
 		});
-	}
+		newTeam.setAlignmentX(Container.CENTER_ALIGNMENT);
+		panel.add(newTeam);
 
-	/**
-	 * Create the application.
-	 */
-	public MainMenuWindow() {
-		initialize();
+		importTeam = new JButton("Import an existing Pokemon team");
+		importTeam.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				importTeam();
+			}
+		});
+		importTeam.setAlignmentX(Container.CENTER_ALIGNMENT);
+		panel.add(importTeam);
+
+		viewPokedex = new JButton("View Pokedex");
+		viewPokedex.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				viewPokedex();
+			}
+		});
+		viewPokedex.setAlignmentX(Container.CENTER_ALIGNMENT);
+		panel.add(viewPokedex);
+
+		frame = new JFrame(TITLE);
+		frame.setContentPane(panel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
-		
-		JLabel lblPokemonTeamBuilderpokde = new JLabel("Pokemon Team Builder/Pok\u00E9dex");
-		lblPokemonTeamBuilderpokde.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblPokemonTeamBuilderpokde.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		frame.getContentPane().add(lblPokemonTeamBuilderpokde, "10, 2, 3, 5");
-		
-		JButton btnCreateNewTeam = new JButton("Create New Team");
-		btnCreateNewTeam.setAlignmentX(Component.CENTER_ALIGNMENT);
-		btnCreateNewTeam.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new TeamBuilderWindowManager(null, new PokedexWrapper());
-				frame.setVisible(false);
-			}
-		});
-		btnCreateNewTeam.setVerticalAlignment(SwingConstants.BOTTOM);
-		frame.getContentPane().add(btnCreateNewTeam, "10, 12");
-		
-		JButton btnImportExistingTeam = new JButton("Import Existing Team");
-		btnImportExistingTeam.setAlignmentX(Component.CENTER_ALIGNMENT);
-		frame.getContentPane().add(btnImportExistingTeam, "12, 12");
-		
-		JButton btnLookPokdex = new JButton("Look Pok\u00E9dex");
-		btnLookPokdex.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-		frame.getContentPane().add(btnLookPokdex, "10, 14, 3, 1");
+	private void createNewTeam() {
+		frame.setVisible(false);
+		new TeamBuilderWindowManager(null, pokedex);
 	}
 
+	private void importTeam() {
+
+	}
+
+	private void viewPokedex() {
+
+	}
+
+	public void appear() {
+		frame.setVisible(true);
+	}
 }
