@@ -1,9 +1,10 @@
 package window;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 
 import com.pokejava.Pokemon;
 
+import main.Main;
 import objects.Team;
 
 public class TeamBuilderWindow {
@@ -22,24 +24,6 @@ public class TeamBuilderWindow {
 	// btnPoke6;
 
 	private JButton[] btnPoke = new JButton[Team.MAX_SIZE];
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TeamBuilderWindow window = new TeamBuilderWindow();
-					window.frame.setVisible(true);
-					window.setPokemon(new Pokemon("lucario"), 0);
-					window.setPokemon(new Pokemon("pikachu"), 1);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -57,7 +41,15 @@ public class TeamBuilderWindow {
 		frame.setResizable(false);
 		frame.setPreferredSize(new Dimension(1000, 800));
 		frame.setSize(new Dimension(1000, 800));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				close();
+			}
+		});
+
 		frame.setLocationRelativeTo(null);
 
 		JPanel panel = new JPanel(new GridLayout(3, 2, 0, 0));
@@ -94,5 +86,12 @@ public class TeamBuilderWindow {
 
 	public void addListener(int index, ActionListener l) {
 		btnPoke[index].addActionListener(l);
+	}
+
+	private void close() {
+
+		frame.dispose();
+
+		Main.showMainWindow();
 	}
 }

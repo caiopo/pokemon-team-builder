@@ -5,11 +5,18 @@ import window.MainMenuWindow;
 
 public class Main {
 
+	private static MainMenuWindow mainWindow;
+
 	public static void main(String[] args) {
 
 		PokedexWrapper pokedex = new PokedexWrapper();
 
-		MainMenuWindow window = new MainMenuWindow(pokedex);
+		mainWindow = new MainMenuWindow(pokedex);
+
+	}
+
+	public static void showMainWindow() {
+		mainWindow.show();
 	}
 
 }

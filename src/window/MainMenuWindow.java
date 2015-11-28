@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import io.Importer;
 import util.PokedexWrapper;
 
 public class MainMenuWindow {
@@ -73,14 +74,14 @@ public class MainMenuWindow {
 	}
 
 	private void importTeam() {
-
+		new TeamBuilderWindowManager(Importer.importar(), pokedex);
 	}
 
 	private void viewPokedex() {
-
+		// TODO
 	}
 
-	public void appear() {
+	public void show() {
 		frame.setVisible(true);
 	}
 }
