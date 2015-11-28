@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -14,14 +15,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.pokejava.Ability;
+import com.pokejava.Description;
 import com.pokejava.Pokemon;
 
 public class PokemonInfoWindow {
 
 	private JFrame frame;
+	private Pokemon pokemon;
 
 	public PokemonInfoWindow(Pokemon pokemon) {
-
+		this.pokemon = pokemon;
 		ArrayList<Ability> abilities = pokemon.getAbilities();
 
 		// GridLayout grid = new GridLayout(0, 1);
@@ -43,8 +46,16 @@ public class PokemonInfoWindow {
 
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-		panel.add(new JLabel("Height: " + pokemon.getHeight()));
-		panel.add(new JLabel("Weight" + pokemon.getWeight()));
+		// panel.add(new JLabel("Description: " +
+		// chooseDescription(pokemon).getDescription()));
+
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+		double height = Double.parseDouble(pokemon.getHeight()) / 10;
+		double weight = Double.parseDouble(pokemon.getWeight()) / 10;
+
+		panel.add(new JLabel("Height: " + height + " m"));
+		panel.add(new JLabel("Weight: " + weight + " kg"));
 
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
@@ -57,18 +68,12 @@ public class PokemonInfoWindow {
 
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-		if (pokemon.getEvolvesAt() == -2)
-			panel.add(new JLabel("Evolution: Special"));
-		else if (pokemon.getEvolvesAt() == -1)
-			panel.add(new JLabel("Evolution: None"));
-		else
-			panel.add(new JLabel("Evolves at: " + pokemon.getEvolvesAt()));
-
-		// TODO add more infos if possible
-
-		// panel.add(new JLabel("M/F: " + pokemon.getMFRatio()));
-		// panel.add(new JLabel("Catch rate: " + pokemon.getCatchRate()));
-		// panel.add(new JLabel("Base friendship: " + pokemon.getHappiness()));
+		// if (pokemon.getEvolvesAt() == -2)
+		// panel.add(new JLabel("Evolution: Special"));
+		// else if (pokemon.getEvolvesAt() == -1)
+		// panel.add(new JLabel("Evolution: None"));
+		// else
+		// panel.add(new JLabel("Evolves at: " + pokemon.getEvolvesAt()));
 
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
@@ -80,7 +85,19 @@ public class PokemonInfoWindow {
 
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
+		// TODO add more infos if possible
+
 		frame = new JFrame("Pokemon Info");
+
+		JButton descriptionButton = new JButton("Descriptions");
+		descriptionButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new PokemonDescriptionWindow(PokemonInfoWindow.this.pokemon);
+			}
+		});
+		panel.add(descriptionButton);
 
 		JButton closeButton = new JButton("Close");
 		closeButton.addActionListener(new ActionListener() {
@@ -98,8 +115,9 @@ public class PokemonInfoWindow {
 		frame.pack();
 
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
+		frame.requestFocus();
 
 	}
 

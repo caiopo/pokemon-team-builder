@@ -1,14 +1,13 @@
 package main;
 
-import com.pokejava.Pokemon;
-
-import window.PokemonInfoWindow;
+import util.PokedexWrapper;
+import window.TeamBuilderWindowManager;
 
 public class Main {
 
 	public static void main(String[] args) {
-
-		new PokemonInfoWindow(new Pokemon("riolu"));
+		// new PokemonDescriptionWindow(new Pokemon("riolu"));
+		new TeamBuilderWindowManager(null, new PokedexWrapper());
 	}
 
 }

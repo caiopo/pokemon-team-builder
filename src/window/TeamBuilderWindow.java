@@ -3,6 +3,7 @@ package window;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -31,8 +32,8 @@ public class TeamBuilderWindow {
 				try {
 					TeamBuilderWindow window = new TeamBuilderWindow();
 					window.frame.setVisible(true);
-					 window.setPokemon(new Pokemon("lucario"), 0);
-					 window.setPokemon(new Pokemon("pikachu"), 1);
+					window.setPokemon(new Pokemon("lucario"), 0);
+					window.setPokemon(new Pokemon("pikachu"), 1);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,7 +52,7 @@ public class TeamBuilderWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("Pokedex");
+		frame = new JFrame("Pokemon Team Builder");
 		frame.getContentPane().setSize(new Dimension(1000, 800));
 		frame.setResizable(false);
 		frame.setPreferredSize(new Dimension(1000, 800));
@@ -64,17 +65,34 @@ public class TeamBuilderWindow {
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 		for (int i = 0; i < btnPoke.length; i++) {
-			btnPoke[i] = new JButton("Pokemon " + (i + 1));
+			// btnPoke[i] = new JButton("Pokemon " + (i + 1));
+			btnPoke[i] = new JButton("Click to add a Pokemon");
+
 			panel.add(btnPoke[i]);
 		}
 
 		frame.setContentPane(panel);
+		frame.setVisible(true);
 	}
 
 	public void setPokemon(Pokemon pokemon, int index) {
-		btnPoke[index].setIcon(pokemon.getIcon());
-		btnPoke[index].setText(pokemon.getName());
+		if (pokemon != null) {
 
+			btnPoke[index].setIcon(pokemon.getIcon());
+			btnPoke[index].setText(pokemon.getName());
+		} else {
+			btnPoke[index].setIcon(null);
+			btnPoke[index].setText("Click to add a Pokemon");
+		}
 	}
 
+	public void update(Team team) {
+		for (int i = 0; i < Team.MAX_SIZE; i++) {
+			setPokemon(team.get(i), i);
+		}
+	}
+
+	public void addListener(int index, ActionListener l) {
+		btnPoke[index].addActionListener(l);
+	}
 }
