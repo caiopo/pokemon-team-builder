@@ -13,6 +13,7 @@ public class WaitingDialog2 {
 	private JLabel label;
 
 	public WaitingDialog2(String message, String title) {
+		System.out.println("Creating: " + this.getClass().getName());
 
 		label = new JLabel(message);
 

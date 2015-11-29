@@ -25,10 +25,10 @@ public class ViewPokedexWindow {
 
 	private JFrame frame;
 	private JPanel panel;
-	private PokedexWrapper pokedex;
 
 	public ViewPokedexWindow(PokedexWrapper pokedex) {
-		this.pokedex = pokedex;
+		System.out.println("Creating: "+this.getClass().getName());
+
 
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(0, NUM_COL));

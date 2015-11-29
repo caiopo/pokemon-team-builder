@@ -16,6 +16,7 @@ public class Main {
 	}
 
 	public static void showMainWindow() {
+		System.out.println("Going back to MainWindow");
 		mainWindow.show();
 	}
 

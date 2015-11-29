@@ -31,6 +31,8 @@ public class TeamBuilderWindow {
 	 * Create the application.
 	 */
 	public TeamBuilderWindow() {
+		System.out.println("Creating: "+this.getClass().getName());
+
 		initialize();
 	}
 

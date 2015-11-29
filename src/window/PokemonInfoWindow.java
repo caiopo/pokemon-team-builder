@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -24,6 +23,8 @@ public class PokemonInfoWindow {
 	private Pokemon pokemon;
 
 	public PokemonInfoWindow(Pokemon pokemon) {
+		System.out.println("Creating: "+this.getClass().getName());
+
 		this.pokemon = pokemon;
 		ArrayList<Ability> abilities = pokemon.getAbilities();
 

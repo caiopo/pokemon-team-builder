@@ -12,16 +12,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 import com.pokejava.Pokemon;
 
 import objects.PokedexWrapper;
-import sun.swing.SwingUtilities2;
 
 public class PokemonSearch {
 
 	public static Pokemon open(PokedexWrapper pokedex) {
+		System.out.println("Creating: " + PokemonSearch.class.getName());
 
 		PokemonSearchWindow search = new PokemonSearchWindow();
 
@@ -57,20 +56,15 @@ class PokemonSearchWindow {
 		if (input.isEmpty())
 			return null;
 
-		System.out.println("Creating window");
-
 		wDialog = new WaitingDialog("Searching", "Wait");
 
-		System.out.println("Started search");
 		Pokemon[] searchResult = pokedex.searchPokemon(input);
-		System.out.println("Finished search");
 
 		return searchResult;
 
 	}
 
 	public Pokemon makeResultWindow(Pokemon[] pokemons) {
-		System.out.println("Started the result window");
 
 		if (pokemons == null) {
 			wDialog.dispose();

@@ -11,6 +11,7 @@ public class WaitingDialog {
 	private JDialog dialog;
 
 	public WaitingDialog(String message, String title) {
+		System.out.println("Creating: "+this.getClass().getName());
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -22,8 +23,7 @@ public class WaitingDialog {
 		dialog.setModal(false);
 		dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		dialog.setVisible(true);
-		
-		
+
 		// JOptionPane jop = new JOptionPane("aa");
 		// jop.set
 

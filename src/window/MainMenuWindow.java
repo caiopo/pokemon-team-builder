@@ -25,6 +25,7 @@ public class MainMenuWindow {
 	private PokedexWrapper pokedex;
 
 	public MainMenuWindow(PokedexWrapper pokedex) {
+		System.out.println("Creating: "+this.getClass().getName());
 		this.pokedex = pokedex;
 
 		panel = new JPanel();

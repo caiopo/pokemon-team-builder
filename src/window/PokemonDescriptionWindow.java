@@ -26,6 +26,8 @@ public class PokemonDescriptionWindow {
 	private JFrame frame;
 
 	public PokemonDescriptionWindow(Pokemon pokemon) {
+		System.out.println("Creating: "+this.getClass().getName());
+
 		this.pokemon = pokemon;
 
 		descriptions = pokemon.getDescriptions();
