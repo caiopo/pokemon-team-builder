@@ -21,7 +21,7 @@ public class WaitingDialog {
 		panel.setLayout(new BorderLayout());
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-		label = new JLabel("aaaaa");
+		label = new JLabel(message);
 		panel.add(label);
 
 		frame.setContentPane(panel);

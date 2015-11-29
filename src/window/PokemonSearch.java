@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 import com.pokejava.Pokemon;
 
-import util.PokedexWrapper;
+import objects.PokedexWrapper;
 
 public class PokemonSearch {
 

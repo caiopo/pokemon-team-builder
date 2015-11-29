@@ -3,8 +3,8 @@ package window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import objects.PokedexWrapper;
 import objects.Team;
-import util.PokedexWrapper;
 
 public class TeamBuilderWindowManager {
 	private Team team;

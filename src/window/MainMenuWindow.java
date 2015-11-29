@@ -11,8 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import io.Importer;
+import objects.PokedexWrapper;
 import objects.Team;
-import util.PokedexWrapper;
 
 public class MainMenuWindow {
 
@@ -89,6 +89,7 @@ public class MainMenuWindow {
 
 	private void viewPokedex() {
 		// TODO
+		
 	}
 
 	public void show() {

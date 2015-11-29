@@ -1,6 +1,6 @@
 package main;
 
-import util.PokedexWrapper;
+import objects.PokedexWrapper;
 import window.MainMenuWindow;
 
 public class Main {
