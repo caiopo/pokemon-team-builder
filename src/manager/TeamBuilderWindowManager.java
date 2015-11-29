@@ -1,4 +1,4 @@
-package window;
+package manager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import io.Exporter;
 import objects.PokedexWrapper;
 import objects.Team;
+import window.PokemonInfoWindow;
+import window.PokemonSearch;
+import window.TeamBuilderWindow;
 
 public class TeamBuilderWindowManager {
 	private Team team;
@@ -60,9 +63,7 @@ public class TeamBuilderWindowManager {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("antes");
 			Exporter.export(team);
-			System.out.println("depois");
 
 		}
 

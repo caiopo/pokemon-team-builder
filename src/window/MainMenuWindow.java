@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import io.Importer;
+import manager.TeamBuilderWindowManager;
 import objects.PokedexWrapper;
 import objects.Team;
 

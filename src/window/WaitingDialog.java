@@ -1,43 +1,37 @@
 package window;
 
-import java.awt.BorderLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
+import javax.swing.BoxLayout;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class WaitingDialog {
 
-	private JFrame frame;
-	private JPanel panel;
-	private JLabel label;
+	private JDialog dialog;
 
 	public WaitingDialog(String message, String title) {
 
-		frame = new JFrame(title);
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		panel.add(new JLabel(message));
 
-		label = new JLabel(message);
-		panel.add(label);
+		dialog = new JOptionPane(panel).createDialog(title);
 
-		frame.setContentPane(panel);
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
-		// frame.setResizable(false);
-		frame.setVisible(true);
+		dialog.setModal(false);
+		dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		dialog.setVisible(true);
+		
+		
+		// JOptionPane jop = new JOptionPane("aa");
+		// jop.set
+
 	}
 
-	// public void setMessage(String message) {
-	// label.setText(message);
-	// }
-
 	public void dispose() {
-		frame.dispose();
+
+		dialog.dispose();
 	}
 
 }

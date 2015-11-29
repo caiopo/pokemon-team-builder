@@ -1,17 +1,23 @@
 package window;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import com.pokejava.Pokemon;
 
 import objects.PokedexWrapper;
+import sun.swing.SwingUtilities2;
 
 public class PokemonSearch {
 
@@ -35,8 +41,13 @@ class PokemonSearchWindow {
 	public Pokemon[] input(PokedexWrapper pokedex) {
 
 		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		JTextField jtf = new JTextField(20);
+		panel.add(new JLabel("Enter the name of the Pokemon you are looking for"));
+
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+		JTextField jtf = new JTextField();
 		panel.add(jtf);
 
 		JOptionPane.showMessageDialog(null, panel, TITLE, JOptionPane.PLAIN_MESSAGE);
@@ -48,7 +59,7 @@ class PokemonSearchWindow {
 
 		System.out.println("Creating window");
 
-		wDialog = new WaitingDialog("Searching...", "Wait");
+		wDialog = new WaitingDialog("Searching", "Wait");
 
 		System.out.println("Started search");
 		Pokemon[] searchResult = pokedex.searchPokemon(input);
@@ -61,8 +72,10 @@ class PokemonSearchWindow {
 	public Pokemon makeResultWindow(Pokemon[] pokemons) {
 		System.out.println("Started the result window");
 
-		if (pokemons == null)
+		if (pokemons == null) {
+			wDialog.dispose();
 			return null;
+		}
 
 		if (pokemons.length == 1) {
 			wDialog.dispose();
