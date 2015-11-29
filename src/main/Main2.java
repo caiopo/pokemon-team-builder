@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 
 import com.pokejava.Pokemon;
 
+import objects.PokedexWrapper;
 import objects.Team;
-import util.PokeUtils;
 import window.PokemonInfoWindow;
 
 public class Main2 {
@@ -26,7 +26,7 @@ public class Main2 {
 
 		for (int i = 0; i < Team.MAX_SIZE; i++) {
 
-			Pokemon randPoke = new Pokemon(rng.nextInt(PokeUtils.MAX_POKEDEX));
+			Pokemon randPoke = new Pokemon(rng.nextInt(PokedexWrapper.MAX_POKEDEX));
 
 			System.out.println(randPoke.toString() + " " + randPoke.getID());
 

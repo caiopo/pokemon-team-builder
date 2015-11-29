@@ -1,4 +1,4 @@
-package util;
+package objects;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,8 @@ import com.pokejava.Pokemon;
 public class PokedexWrapper {
 
 	private Pokedex pokedex;
+
+	public static final int MAX_POKEDEX = 718;
 
 	private List<String> names;
 
@@ -24,10 +26,9 @@ public class PokedexWrapper {
 		// if (n != null && n.contains(name))
 		// filtered.add(n);
 
-		for (int i = 1; i < PokeUtils.MAX_POKEDEX; i++)
+		for (int i = 1; i < MAX_POKEDEX; i++)
 			if (names.get(i).contains(name))
 				filtered.add(names.get(i));
-
 
 		return filtered.toArray(new String[filtered.size()]);
 	}
