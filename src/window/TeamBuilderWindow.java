@@ -1,5 +1,7 @@
 package window;
 
+import io.Exporter;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -9,12 +11,18 @@ import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 import com.pokejava.Pokemon;
 
 import main.Main;
 import objects.Team;
+
+import javax.swing.JMenuItem;
+
+import java.awt.event.ActionEvent;
 
 public class TeamBuilderWindow {
 
@@ -62,7 +70,8 @@ public class TeamBuilderWindow {
 
 			panel.add(btnPoke[i]);
 		}
-
+		
+		frame.setJMenuBar(createMenuBar());
 		frame.setContentPane(panel);
 		frame.setVisible(true);
 	}
@@ -88,6 +97,24 @@ public class TeamBuilderWindow {
 		btnPoke[index].addActionListener(l);
 	}
 
+	private JMenuBar createMenuBar() {
+		JMenuBar menuBar = new JMenuBar();
+		
+		JMenu teamOptions = new JMenu("Team Options");
+		JMenuItem exportTeam = new JMenuItem("Export Team");
+		teamOptions.add(exportTeam);
+		JMenuItem saveTeam = new JMenuItem("Save Team");
+		teamOptions.add(saveTeam);
+		menuBar.add(teamOptions);
+		
+		JMenu back = new JMenu("Return");
+		JMenuItem returnToMenu = new JMenuItem("Return to Main Menu");
+		back.add(returnToMenu);
+		menuBar.add(back);
+		
+		return menuBar;
+	}
+	
 	private void close() {
 
 		frame.dispose();
