@@ -88,10 +88,9 @@ public class MainMenuWindow {
 	}
 
 	private void viewPokedex() {
-		// TODO
-		
-		
-		
+
+		frame.setVisible(false);
+		new ViewPokedexWindow(pokedex);
 
 	}
 

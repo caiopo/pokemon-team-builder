@@ -31,7 +31,6 @@ public class ViewPokedexWindow {
 		this.pokedex = pokedex;
 
 		panel = new JPanel();
-		// panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setLayout(new GridLayout(0, NUM_COL));
 
 		List<String> pokemonNames = pokedex.getNames();

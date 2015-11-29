@@ -1,10 +1,9 @@
 package window;
 
-import io.Exporter;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import io.Exporter;
 import objects.PokedexWrapper;
 import objects.Team;
 
@@ -29,6 +28,8 @@ public class TeamBuilderWindowManager {
 		} else
 			this.team = new Team();
 
+		tbw.addExportListener(new ExportListener());
+
 	}
 
 	public void buttonPressed(int index) {
@@ -51,6 +52,18 @@ public class TeamBuilderWindowManager {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			TeamBuilderWindowManager.this.buttonPressed(index);
+		}
+
+	}
+
+	class ExportListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("antes");
+			Exporter.export(team);
+			System.out.println("depois");
+
 		}
 
 	}

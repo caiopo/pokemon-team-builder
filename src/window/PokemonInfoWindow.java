@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 
 import com.pokejava.Ability;
 import com.pokejava.Pokemon;
+import com.pokejava.Type;
 
 public class PokemonInfoWindow {
 
@@ -38,7 +40,20 @@ public class PokemonInfoWindow {
 
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
+		ArrayList<Type> types = pokemon.getTypes();
+
+		if (types.size() == 1)
+			panel.add(new JLabel("Type: " + types.get(0).getName()));
+
+		else if (types.size() == 2) {
+
+			panel.add(new JLabel("Type #1: " + types.get(0).getName()));
+			panel.add(new JLabel("Type #2: " + types.get(1).getName()));
+
+		}
+
+		if (types.size() > 0)
+			panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
 		double height = Double.parseDouble(pokemon.getHeight()) / 10;
 		double weight = Double.parseDouble(pokemon.getWeight()) / 10;

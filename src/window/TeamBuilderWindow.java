@@ -1,7 +1,5 @@
 package window;
 
-import io.Exporter;
-
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -13,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import com.pokejava.Pokemon;
@@ -20,18 +19,13 @@ import com.pokejava.Pokemon;
 import main.Main;
 import objects.Team;
 
-import javax.swing.JMenuItem;
-
-import java.awt.event.ActionEvent;
-
 public class TeamBuilderWindow {
 
 	private JFrame frame;
 
-	// private JButton btnPoke1, btnPoke2, btnPoke3, btnPoke4, btnPoke5,
-	// btnPoke6;
-
 	private JButton[] btnPoke = new JButton[Team.MAX_SIZE];
+
+	private JMenuItem export;
 
 	/**
 	 * Create the application.
@@ -49,8 +43,6 @@ public class TeamBuilderWindow {
 		frame.setResizable(false);
 		frame.setPreferredSize(new Dimension(1000, 800));
 		frame.setSize(new Dimension(1000, 800));
-
-		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -70,8 +62,19 @@ public class TeamBuilderWindow {
 
 			panel.add(btnPoke[i]);
 		}
-		
-		frame.setJMenuBar(createMenuBar());
+
+		JMenuBar menuBar = new JMenuBar();
+
+		export = new JMenuItem("Export");
+
+		JMenu menuExport = new JMenu("Export");
+
+		menuExport.add(export);
+
+		menuBar.add(menuExport);
+
+		frame.setJMenuBar(menuBar);
+
 		frame.setContentPane(panel);
 		frame.setVisible(true);
 	}
@@ -97,24 +100,10 @@ public class TeamBuilderWindow {
 		btnPoke[index].addActionListener(l);
 	}
 
-	private JMenuBar createMenuBar() {
-		JMenuBar menuBar = new JMenuBar();
-		
-		JMenu teamOptions = new JMenu("Team Options");
-		JMenuItem exportTeam = new JMenuItem("Export Team");
-		teamOptions.add(exportTeam);
-		JMenuItem saveTeam = new JMenuItem("Save Team");
-		teamOptions.add(saveTeam);
-		menuBar.add(teamOptions);
-		
-		JMenu back = new JMenu("Return");
-		JMenuItem returnToMenu = new JMenuItem("Return to Main Menu");
-		back.add(returnToMenu);
-		menuBar.add(back);
-		
-		return menuBar;
+	public void addExportListener(ActionListener l) {
+		export.addActionListener(l);
 	}
-	
+
 	private void close() {
 
 		frame.dispose();

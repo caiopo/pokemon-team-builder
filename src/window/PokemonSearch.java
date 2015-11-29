@@ -64,6 +64,11 @@ class PokemonSearchWindow {
 		if (pokemons == null)
 			return null;
 
+		if (pokemons.length == 1) {
+			wDialog.dispose();
+			return pokemons[0];
+		}
+
 		JPanel panel = new JPanel(new GridLayout(0, Math.min(5, pokemons.length)));
 		ButtonGroup bg = new ButtonGroup();
 		ArrayList<JRadioButton> jrbs = new ArrayList<>(pokemons.length);
