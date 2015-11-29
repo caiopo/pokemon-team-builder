@@ -93,7 +93,7 @@ public class PokemonInfoWindow {
 		frame.add(panel);
 
 		frame.pack();
-
+		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);

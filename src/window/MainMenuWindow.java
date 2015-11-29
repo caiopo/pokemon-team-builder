@@ -90,6 +90,9 @@ public class MainMenuWindow {
 	private void viewPokedex() {
 		// TODO
 		
+		
+		
+
 	}
 
 	public void show() {

@@ -34,23 +34,6 @@ public class PokemonDescriptionWindow {
 
 	}
 
-	private void next() {
-
-		label.setText(descriptions.get(index).getDescription());
-
-		frame.setTitle(pokemon.getName() + " #" + (index + 1));
-
-		index = (index + 1) % descriptions.size();
-
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-
-	}
-
-	private void dispose() {
-		frame.dispose();
-	}
-
 	private void createWindow() {
 		panel = new JPanel();
 
@@ -90,9 +73,31 @@ public class PokemonDescriptionWindow {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setVisible(true);
 		next();
+	}
+
+	private void next() {
+
+		label.setText(descriptions.get(index).getDescription());
+
+		frame.setTitle(pokemon.getName() + " #" + (index + 1));
+
+		index = (index + 1) % descriptions.size();
+
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} finally {
+			frame.pack();
+			frame.setLocationRelativeTo(null);
+		}
+	}
+
+	private void dispose() {
+		frame.dispose();
 	}
 
 }

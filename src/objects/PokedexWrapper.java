@@ -22,10 +22,6 @@ public class PokedexWrapper {
 	public String[] searchName(String name) {
 		List<String> filtered = new ArrayList<>();
 
-		// for (String n : names)
-		// if (n != null && n.contains(name))
-		// filtered.add(n);
-
 		for (int i = 1; i < MAX_POKEDEX; i++)
 			if (names.get(i).contains(name))
 				filtered.add(names.get(i));
@@ -39,18 +35,16 @@ public class PokedexWrapper {
 
 		Pokemon[] pokes = new Pokemon[filtered.length];
 
-		// System.out.println("start filtered");
-		// for (String string : filtered) {
-		// System.out.println(string);
-		// }
-		// System.out.println("start filtered");
-
 		for (int i = 0; i < filtered.length; i++) {
 			pokes[i] = new Pokemon(filtered[i]);
 		}
 
 		return pokes;
 
+	}
+
+	public List<String> getNames() {
+		return names;
 	}
 
 }
