@@ -22,7 +22,8 @@ public class TeamBuilderWindowManager {
 
 		for (int i = 0; i < Team.MAX_SIZE; i++) {
 
-			tbw.addListener(i, new TeamBuilderListener(i));
+			tbw.addButtonListener(i, new TeamBuilderListener(i));
+			tbw.addMenuItemListener(i, new RemoveListener(i));
 		}
 
 		if (team != null) {
@@ -42,6 +43,13 @@ public class TeamBuilderWindowManager {
 			tbw.update(team);
 		} else
 			new PokemonInfoWindow(team.get(index));
+
+	}
+
+	public void pokemonRemoved(int index) {
+
+		team.remove(index);
+		tbw.update(team);
 
 	}
 
@@ -65,6 +73,20 @@ public class TeamBuilderWindowManager {
 		public void actionPerformed(ActionEvent e) {
 			Exporter.export(team);
 
+		}
+
+	}
+
+	class RemoveListener implements ActionListener {
+		private int index;
+
+		public RemoveListener(int index) {
+			this.index = index;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			TeamBuilderWindowManager.this.pokemonRemoved(index);
 		}
 
 	}

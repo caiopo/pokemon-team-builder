@@ -27,11 +27,13 @@ public class TeamBuilderWindow {
 
 	private JMenuItem export;
 
+	private JMenuItem[] rmPoke = new JMenuItem[Team.MAX_SIZE];
+
 	/**
 	 * Create the application.
 	 */
 	public TeamBuilderWindow() {
-		System.out.println("Creating: "+this.getClass().getName());
+		System.out.println("Creating: " + this.getClass().getName());
 
 		initialize();
 	}
@@ -58,22 +60,25 @@ public class TeamBuilderWindow {
 
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-		for (int i = 0; i < btnPoke.length; i++) {
-			// btnPoke[i] = new JButton("Pokemon " + (i + 1));
-			btnPoke[i] = new JButton("Click to add a Pokemon");
-
-			panel.add(btnPoke[i]);
-		}
-
 		JMenuBar menuBar = new JMenuBar();
+
+		JMenu menuRemove = new JMenu("Remove from Team");
+
+		for (int i = 0; i < Team.MAX_SIZE; i++) {
+			btnPoke[i] = new JButton("Click to add a Pokemon");
+			panel.add(btnPoke[i]);
+
+			rmPoke[i] = new JMenuItem("Pokemon " + (i + 1));
+			menuRemove.add(rmPoke[i]);
+		}
 
 		export = new JMenuItem("Export");
 
 		JMenu menuExport = new JMenu("Export");
-
 		menuExport.add(export);
 
 		menuBar.add(menuExport);
+		menuBar.add(menuRemove);
 
 		frame.setJMenuBar(menuBar);
 
@@ -98,12 +103,16 @@ public class TeamBuilderWindow {
 		}
 	}
 
-	public void addListener(int index, ActionListener l) {
+	public void addButtonListener(int index, ActionListener l) {
 		btnPoke[index].addActionListener(l);
 	}
 
 	public void addExportListener(ActionListener l) {
 		export.addActionListener(l);
+	}
+
+	public void addMenuItemListener(int index, ActionListener l) {
+		rmPoke[index].addActionListener(l);
 	}
 
 	private void close() {

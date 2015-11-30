@@ -35,6 +35,10 @@ public class Team {
 		team[currentIndex] = null;
 	}
 
+	public void remove(int i) {
+		team[i] = null;
+	}
+
 	public void clear() {
 		team = new Pokemon[MAX_SIZE];
 	}

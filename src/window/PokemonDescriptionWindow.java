@@ -26,11 +26,15 @@ public class PokemonDescriptionWindow {
 	private JFrame frame;
 
 	public PokemonDescriptionWindow(Pokemon pokemon) {
-		System.out.println("Creating: "+this.getClass().getName());
+		System.out.println("Creating: " + this.getClass().getName());
 
 		this.pokemon = pokemon;
 
+		WaitingDialog wDialog = new WaitingDialog("Please wait", "Searching");
+
 		descriptions = pokemon.getDescriptions();
+
+		wDialog.dispose();
 
 		createWindow();
 

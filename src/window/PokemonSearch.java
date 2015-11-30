@@ -27,7 +27,9 @@ public class PokemonSearch {
 		Pokemon[] input = search.input(pokedex);
 
 		if (input == null) {
-			search.wDialog.dispose();
+
+			if (search.wDialog != null)
+				search.wDialog.dispose();
 			JOptionPane.showMessageDialog(null, "Pokemon not found!", "Search Pokemon", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
