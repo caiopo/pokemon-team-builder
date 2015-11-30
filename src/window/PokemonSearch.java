@@ -26,6 +26,12 @@ public class PokemonSearch {
 
 		Pokemon[] input = search.input(pokedex);
 
+		if (input == null) {
+			search.wDialog.dispose();
+			JOptionPane.showMessageDialog(null, "Pokemon not found!", "Search Pokemon", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+
 		return search.makeResultWindow(input);
 	}
 
@@ -33,9 +39,9 @@ public class PokemonSearch {
 
 class PokemonSearchWindow {
 
-	public static String TITLE = "Search Pokemon";
+	public final static String TITLE = "Search Pokemon";
 
-	private WaitingDialog wDialog;
+	public WaitingDialog wDialog;
 
 	public Pokemon[] input(PokedexWrapper pokedex) {
 
