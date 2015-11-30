@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import objects.Team;
 
@@ -19,8 +20,14 @@ public class Exporter {
 
 		File input = jfc.getSelectedFile();
 
-		if (!input.exists())
-			System.out.println("it exists");
+		if (input.exists()) {
+			int choose = JOptionPane.showConfirmDialog(null, "This file already exists, do you want to overwrite it?",
+					"Warning!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null);
+
+			if (choose != JOptionPane.YES_OPTION) {
+				return;
+			}
+		}
 
 		PrintWriter pw = null;
 		try {
@@ -40,6 +47,8 @@ public class Exporter {
 
 		pw.flush();
 		pw.close();
+
+		JOptionPane.showMessageDialog(null, "Team saved!", "Saved", JOptionPane.INFORMATION_MESSAGE);
 
 	}
 

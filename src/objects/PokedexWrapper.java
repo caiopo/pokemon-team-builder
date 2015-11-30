@@ -23,7 +23,7 @@ public class PokedexWrapper {
 		List<String> filtered = new ArrayList<>();
 
 		for (int i = 0; i < MAX_POKEDEX; i++)
-			if (names.get(i).contains(name))
+			if (names.get(i).contains(name.toLowerCase()))
 				filtered.add(names.get(i));
 
 		if (filtered.size() == 0)
